@@ -12,6 +12,7 @@ export const enum PageIds {
 class App{
   private static container: HTMLElement = document.body; 
   private initialPage: MainPage;
+  private header: Header;
 
   static renderNewPage(idPage:string) {
     App.container.innerHTML = '';
@@ -42,10 +43,12 @@ class App{
 
   constructor(){
     this.initialPage = new MainPage('main-page');
+    this.header = new Header('header', 'header');
   }
   
   run() {
-    App.renderNewPage('statistics-page');
+    App.renderNewPage('main-page');
+    App.container.append(this.header.render());
     this.enableRouteChange();
   }
 }

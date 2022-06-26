@@ -6,7 +6,7 @@ abstract class Component {
     this.container.className = className;
   }
 
-  rehder () {
+  render () {
     return this.container;
   }
 

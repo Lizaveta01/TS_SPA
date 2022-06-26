@@ -35,7 +35,7 @@ class Header extends Component {
   }
 
   render() {
-    this.renderPageButtons;
+    this.renderPageButtons();
     return this.container;
   }
 }
