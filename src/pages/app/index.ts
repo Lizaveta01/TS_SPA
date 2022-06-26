@@ -1,6 +1,7 @@
 import MainPage from "../main";
 import SettingsPage from "../settings";
 import StatisticsPage from "../statistics";
+import ErrorPage, { ErrorTypes } from "../error";
 import Page from "../../core/templates/page";
 import Header from "../../core/components/header";
 
@@ -28,6 +29,8 @@ class App{
       page = new SettingsPage(idPage)
     } else if (idPage === PageIds.StatisticsPage){
       page = new StatisticsPage(idPage)
+    } else {
+      page = new ErrorPage(idPage, ErrorTypes.Error_404)
     }   
 
     if (page) {
