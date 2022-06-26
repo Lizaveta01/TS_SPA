@@ -2,8 +2,9 @@ import MainPage from "../main";
 import SettingsPage from "../settings";
 import StatisticsPage from "../statistics";
 import Page from "../../core/templates/page";
+import Header from "../../core/components/header";
 
-const enum PageIds {
+export const enum PageIds {
   MainPage = 'main-page',
   SettingsPage = 'settings-page',
   StatisticsPage = 'statistics-page',
@@ -31,8 +32,6 @@ class App{
     
   }
 
-
-
   private enableRouteChange() {
     window.addEventListener('hashchange', () => {
       
@@ -45,7 +44,6 @@ class App{
     this.initialPage = new MainPage('main-page');
   }
   
-
   run() {
     App.renderNewPage('statistics-page');
     this.enableRouteChange();
