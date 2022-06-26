@@ -3,37 +3,52 @@ import SettingsPage from "../settings";
 import StatisticsPage from "../statistics";
 import Page from "../../core/templates/page";
 
+const enum PageIds {
+  MainPage = 'main-page',
+  SettingsPage = 'settings-page',
+  StatisticsPage = 'statistics-page',
+}
 class App{
-  private container: HTMLElement; 
+  private static container: HTMLElement = document.body; 
   private initialPage: MainPage;
 
   static renderNewPage(idPage:string) {
-    document.body.innerHTML = '';
+    App.container.innerHTML = '';
     let page: Page | null = null;
 
-    if (idPage === 'main-page'){
+    if (idPage === PageIds.MainPage ){
       page = new MainPage(idPage)
-    } else if ( idPage === 'settings-page'){
+    } else if ( idPage === PageIds.SettingsPage){
       page = new SettingsPage(idPage)
-    } else if (idPage === 'statistics-page'){
+    } else if (idPage === PageIds.StatisticsPage){
       page = new StatisticsPage(idPage)
     }   
 
     if (page) {
       const pageHTML = page.render();
-      document.body.append(pageHTML);
+      App.container.append(pageHTML);
     }
     
   }
 
+
+
+  private enableRouteChange() {
+    window.addEventListener('hashchange', () => {
+      
+      const hash = window.location.hash.slice(1);
+      App.renderNewPage(hash);
+    })
+  }
+
   constructor(){
-    this.container = document.body;
     this.initialPage = new MainPage('main-page');
   }
   
 
   run() {
-    App.renderNewPage('statistics-page')
+    App.renderNewPage('statistics-page');
+    this.enableRouteChange();
   }
 }
 
